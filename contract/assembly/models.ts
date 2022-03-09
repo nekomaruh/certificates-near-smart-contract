@@ -12,23 +12,25 @@ export class Entity {
 export class Certificate {
   private _name: string;
   private signed: bool;
-  private signedBy: Map<Entity, bool>;
-  private maxEntities: 4;
+  private signedBy: Entity[];
+  private maxEntities: number;
 
   constructor(
     name: string,
     signed: bool = false, 
-    signedBy: Map<Entity, bool> = new Map(),
+    signedBy: Entity[] = [],
     ) {
     this._name = name;
     this.signed = signed;
     this.signedBy = signedBy;
+    this.maxEntities = 4;
   }
 
   addCertificator(entity: Entity): void {
     if (this.signed) return;
-    this.signedBy.set(entity, true);
-    if (this.signedBy.size <= this.maxEntities) {
+    //this.signedBy.set(entity, true);
+    this.signedBy.push(entity);
+    if (this.signedBy.length <= this.maxEntities) {
       this.signed = true
       // GENERATE NFT
     }
@@ -38,7 +40,7 @@ export class Certificate {
     return this.signed;
   }
 
-  public get name(){
+  public get name(): string{
     return this._name;
   }
 }

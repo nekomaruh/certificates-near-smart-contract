@@ -51,7 +51,7 @@ const CERTIFICATE_LIMIT = 10;
 
 
 // Gets all the certificates
-export function getCertificates(): Certificate[] | [] {
+export function getCertificates(): Certificate[]{
   const numCertifications = min(CERTIFICATE_LIMIT, certificates.length);
   const startIndex = certificates.length - numCertifications;
   const result = new Array<Certificate>(numCertifications);
@@ -63,7 +63,7 @@ export function getCertificates(): Certificate[] | [] {
 }
 
 // Get signed certificates
-export function getSignedCertificates(): Certificate[] | [] {
+export function getSignedCertificates(): Certificate[] {
   const numCertifications = min(CERTIFICATE_LIMIT, signedCertificates.length);
   const startIndex = signedCertificates.length - numCertifications;
   const result = new Array<Certificate>(numCertifications);
@@ -77,8 +77,8 @@ export function getSignedCertificates(): Certificate[] | [] {
   return result;
 }
 
-// Adds a certificate
-export function addCertificate(name: string) {
+// Add a certificate
+export function addCertificate(name: string):void {
   const accountId = Context.sender
   var certificate = new Certificate(name);
   storage.set(accountId, certificate);
@@ -89,11 +89,11 @@ export function signCertificate(certName: string, entity: Entity): void {
   const accountId = Context.sender;
   logging.log(`Certificating "${certName}" from "${entity.name}" for account "${accountId}"`)
   var certificates = getCertificates();
-  var signedCertificate;
-  for(let i=0; i<certificates.length; i++){
+  var signedCertificate = new Certificate('');
+  for (let i = 0; i < certificates.length; i++) {
     var certificate = certificates[i];
-    if(certificate.name == certName){
-      if(certificate.isSigned) return;
+    if (certificate.name == certName) {
+      if (certificate.isSigned) return;
       certificate.addCertificator(entity);
       signedCertificate = certificate;
       break;

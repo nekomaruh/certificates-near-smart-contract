@@ -1,4 +1,4 @@
-import { context, u128, PersistentVector } from "near-sdk-as";
+import { context, u128, PersistentVector, u256 } from "near-sdk-as";
 
 @nearBindgen
 export class Entity {
@@ -10,7 +10,7 @@ export class Entity {
 
 @nearBindgen
 export class Certificate {
-  private _name: string;
+  private name: string;
   private signed: bool;
   private signedBy: Entity[];
   private maxEntities: number;
@@ -20,7 +20,7 @@ export class Certificate {
     signed: bool = false, 
     signedBy: Entity[] = [],
     ) {
-    this._name = name;
+    this.name = name;
     this.signed = signed;
     this.signedBy = signedBy;
     this.maxEntities = 4;
@@ -40,11 +40,26 @@ export class Certificate {
     return this.signed;
   }
 
-  public get name(): string{
-    return this._name;
+  public get fileName(): string{
+    return this.name;
   }
 }
 
-export const certificates = new PersistentVector<Certificate>("m");
-export const signedCertificates = new PersistentVector<Certificate>("m");
-export const entities = new PersistentVector<Entity>("m");
+export const certificates = new PersistentVector<Certificate>("c");
+export const signedCertificates = new PersistentVector<Certificate>("s");
+export const entities = new PersistentVector<Entity>("e");
+
+
+/*
+export class CertValidator{
+  private name: string; // Name of the file (id)
+  private hash: number; // URL where file is located
+  constructor(
+    name: string,
+    hash: number
+    ) {
+    this.name = name;
+    this.hash = hash;
+  }
+}
+*/

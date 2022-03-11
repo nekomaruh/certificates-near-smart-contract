@@ -17326,7 +17326,7 @@ __exportStar(require("./browser-connect"), exports);
 require("error-polyfill");
 
 },{"./key_stores/browser-index":"../node_modules/near-api-js/lib/key_stores/browser-index.js","./common-index":"../node_modules/near-api-js/lib/common-index.js","./browser-connect":"../node_modules/near-api-js/lib/browser-connect.js","error-polyfill":"../node_modules/error-polyfill/index.js"}],"config.js":[function(require,module,exports) {
-var CONTRACT_NAME = "dev-1646862930186-84591925131898" || 'certificates-near-smart-contract';
+var CONTRACT_NAME = "dev-1647023066383-16260000288744" || 'certificates-near-smart-contract';
 
 function getConfig(env) {
   switch (env) {
@@ -17366,7 +17366,7 @@ function getConfig(env) {
       return {
         networkId: 'local',
         nodeUrl: 'http://localhost:3030',
-        keyPath: "".concat("/Users/neko", "/.near/validator_key.json"),
+        keyPath: "".concat("/home/gitpod", "/.near/validator_key.json"),
         walletUrl: 'http://localhost:4000/wallet',
         contractName: CONTRACT_NAME
       };
@@ -17447,7 +17447,7 @@ function _initContract() {
               // View methods are read only. They don't modify the state, but usually return some value.
               viewMethods: ['getGreeting'],
               // Change methods can modify the state. But you don't receive the returned value when called.
-              changeMethods: ['setGreeting']
+              changeMethods: ['setGreeting', 'setCertificate']
             });
 
           case 7:
@@ -17664,7 +17664,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "59746" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "44895" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

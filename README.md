@@ -82,7 +82,6 @@ Las pruebas son parte del desarrollo, luego, para ejecutar las pruebas en el con
     yarn test
 
 
-==============================================
 
   [create-near-app]: https://github.com/near/create-near-app
   [Node.js]: https://nodejs.org/en/download/package-manager/
